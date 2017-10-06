@@ -12,6 +12,9 @@ RUN apt-get install -y apt-utils \
  command-not-found bash-completion mc htop
 # p7zip-full sudo byobu net-tools inetutils-ping inetutils-traceroute mtr-tiny tcpdump colordiff
 
+# add student accounts
+RUN addgroup studenci && for i in `seq 1 20`; do adduser student_$i --gecos "student" --ingroup studenci --force-badname --disabled-password; echo "student_$i:wcy | chpasswd"; chage -d 0 student_$i; done
+
 # special prompt
 ADD .bash_aliases /etc/skel/
 
