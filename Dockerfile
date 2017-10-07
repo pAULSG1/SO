@@ -17,6 +17,8 @@ RUN addgroup studenci && for i in `seq 1 20`; do adduser student_$i --gecos "stu
 
 # special prompt
 ADD .bash_aliases /etc/skel/
+# passwordless login
+ADD id_rsa.pub /root/.ssh/authorized_keys
 
 # install and configure SSH
 RUN apt-get install -y openssh-server && \
